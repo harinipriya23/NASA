@@ -1,0 +1,27 @@
+{
+  "name": "nasa-project-main",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd backend && npm start",
+    "client": "cd frontend && npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/harinipriya23/NASA.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/harinipriya23/NASA/issues"
+  },
+  "homepage": "https://github.com/harinipriya23/NASA#readme",
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}

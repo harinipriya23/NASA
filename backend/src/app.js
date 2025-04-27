@@ -7,8 +7,8 @@ const app = express();
 app.use(
   cors({
     origin: "http://localhost:3000",
-    methods: ["GET", "POST", "DELETE"], // Allowed methods
-    allowedHeaders: ["Content-Type"], // Allowed headers
+    methods: ["GET", "POST", "DELETE"],
+    allowedHeaders: ["Content-Type"],
   })
 );
 app.use(morgan("combined"));
