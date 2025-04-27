@@ -1,11 +1,8 @@
 import { Route, Routes } from "react-router-dom";
-
 import usePlanets from "../hooks/usePlanets";
 import useLaunches from "../hooks/useLaunches";
-
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-
 import Launch from "./Launch";
 import History from "./History";
 import Upcoming from "./Upcoming";
@@ -17,7 +14,10 @@ const AppLayout = () => {
   const planets = usePlanets();
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div
+      className="flex flex-col min-h-screen 
+  bg-img bg-cover bg-no-repeat bg-left-top bg-fixed"
+    >
       <Header />
       <section className="flex-1 py-5 px-5 sm:px-10">
         <div className="flex justify-center transition-opacity duration-500 ease-in-out">

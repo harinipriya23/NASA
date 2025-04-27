@@ -8,16 +8,16 @@ const launches = new Map();
 let DEFAULT_FLIGHT_NUMBER = 100;
 
 const launch = {
-  flightNumber: 100, // flight_number
-  mission: "Kepler Exploration X", // name
-  rocket: "Explorer IS1", // rocket.name
-  launchDate: new Date("september 20, 2030"), //date_local
-  target: "Kepler-442 b", // not applicable
-  customers: ["NASA", "GTA"], //payloads.customers
-  upcoming: true, //upcoming
-  success: true, // success
+  flightNumber: 100,
+  mission: "Kepler Exploration X",
+  rocket: "Explorer IS1",
+  launchDate: new Date("september 20, 2030"),
+  target: "Kepler-442 b",
+  customers: ["NASA", "GTA"],
+  upcoming: true,
+  success: true,
 };
-//saveLaunch(launch)
+saveLaunch(launch);
 launches.set(launch.flightNumber, launch);
 const SPACEX_API_URL = "https://api.spacexdata.com/v4/launches/query";
 
@@ -62,10 +62,7 @@ async function populateLaunches() {
       success: launchDoc["success"],
       customers,
     };
-    // console.log(customers)
-    //  console.log(`${launch.flightNumber} ${launch.mission}`)
     await saveLaunch(launch);
-    //console.log(launch)
   }
 }
 async function loadLaunchData() {
@@ -117,7 +114,7 @@ async function scheduleNewLaunch(launch) {
 
   const newLaunch = Object.assign(launch, {
     flightNumber: newFlightNumber,
-    customers: ["NASA", "HP"],
+    customers: ["NASA"],
     upcoming: true,
     success: true,
   });
@@ -137,21 +134,36 @@ async function saveLaunch(launch) {
   );
 }
 
+// async function abortLaunchById(launchId) {
+//   const aborted = await launchesDatabase.updateOne(
+//     {
+//       flightNumber: launchId,
+//     },
+//     {
+//       upcoming: false,
+//       success: false,
+//     }
+//   );
+//   return aborted.modifiedCount === 1;
+// }
+
 async function abortLaunchById(launchId) {
-  const aborted = await launchesDatabase.updateOne(
-    {
-      flightNumber: launchId,
-    },
-    {
-      upcoming: false,
-      success: false,
-    }
-  );
-  return aborted.modifiedCount === 1;
-  // const aborted = launches.get(launchId);
-  // aborted.upcoming = false;
-  // aborted.success = false;
-  // return aborted;
+  const launch = await Launch.findOne({ flightNumber: launchId });
+
+  if (!launch) {
+    console.log("Launch not found for ID:", launchId);
+    return false;
+  }
+
+  launch.upcoming = false; // Set to false or handle the abort logic
+  try {
+    await launch.save();
+    console.log("Launch aborted successfully");
+    return true;
+  } catch (error) {
+    console.error("Error aborting the launch:", error);
+    return false;
+  }
 }
 
 module.exports = {

@@ -7,14 +7,12 @@ const {
 const { getPagination } = require("../../services/query");
 
 async function httpGetAllLaunch(req, res) {
-  console.log("httpGetAllLaunch");
   const { skip, limit } = getPagination(req.query);
   const launches = await getAllLaunch(skip, limit);
   return res.status(200).json(launches);
 }
 async function httpAddNewLaunch(req, res) {
   const launch = req.body;
-  console.log(launch.mission);
   if (
     !launch.mission ||
     !launch.launchDate ||

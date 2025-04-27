@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useState } from "react";
-
 import { httpGetLaunches, httpAddNewLaunch, httpAbortLaunch } from "./requests";
 
 function useLaunches() {
@@ -31,7 +30,6 @@ function useLaunches() {
         target,
       });
 
-      console.log("Response from API launches:", response);
       const success = response.success;
       if (success === true) {
         console.log("Launch submitted successfully");
@@ -50,7 +48,6 @@ function useLaunches() {
   const abortLaunch = useCallback(
     async (id) => {
       const response = await httpAbortLaunch(id);
-      console.log("Response from API abort:", response);
       const success = response.ok;
       if (success) {
         getLaunches();

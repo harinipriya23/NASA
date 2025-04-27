@@ -18,10 +18,8 @@ const launchSchema = new mongoose.Schema({
     required: true,
   },
   target: {
-    // type: mongoose.ObjectId,
-    // ref: 'Planets'
     type: String,
-    //required: true
+    required: true,
   },
   upcoming: {
     type: Boolean,
