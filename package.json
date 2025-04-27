@@ -1,5 +1,6 @@
 {
   "name": "nasa-project-main",
+  "homepage": "https://harinipriya23.github.io/NASA",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "concurrently \"npm run server\" \"npm run client\"",
     "server": "cd backend && npm start",
-    "client": "cd frontend && npm start"
+    "client": "cd frontend && npm start", "deploy": "gh-pages -d build"
   },
   "repository": {
     "type": "git",
@@ -20,8 +21,10 @@
   "bugs": {
     "url": "https://github.com/harinipriya23/NASA/issues"
   },
-  "homepage": "https://github.com/harinipriya23/NASA#readme",
   "devDependencies": {
     "concurrently": "^9.1.2"
+  },
+  "dependencies": {
+    "gh-pages": "^6.3.0"
   }
 }
